@@ -2,11 +2,12 @@
 var tableData = data;
 // Select the submit button
 
-var submit = d3.select("#filter-btn");
+//var submit = d3.select("#filter-btn");
 
 var tablebody = d3.select("tbody");
 
 function buildTable(data){
+    tablebody.html(""),
     data.forEach((dataRow) => {
         var row = tablebody.append("tr");
         Object.values(dataRow).forEach((val) => {
@@ -15,20 +16,23 @@ function buildTable(data){
         }
         );
     });
-};
+}
 
 // }
-var inputElement = d3.select("#datetime");
-var inputValue=inputElement.property("value");
+//var inputElement = d3.select("#datetime");
+//var inputValue=inputElement.property("value");
 // console(buildTable)
 function renderTable(){
+    var inputElement = d3.select("#datetime").property("value");
     d3.event.preventDefault();
-    
-    var filteredData = tableData.filter(sighting=>
-    sighting.datetime == inputValue 
+    // }
+    let filteredData = tableData;
+
+    filteredData = tableData.filter(sighting=>
+    sighting.datetime === inputElement 
     );
     buildTable(filteredData);
-};
+}
 //submit.on("click", function()
 //{
 
